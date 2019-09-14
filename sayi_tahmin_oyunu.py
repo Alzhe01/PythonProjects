@@ -8,5 +8,5 @@ while True:
         break
     elif tahmin < sayi:
         print("Maalesef tuttuğum sayı daha büyük dostum :(")
-    elif tahmin > sayi:
+    else:
         print("Maalesef tuttuğum sayı daha küçük dostum :(")

@@ -1,7 +1,9 @@
 class Exam:
+    notlar = [52,69]
     def score(self, dogru_sayisi=0, yanlis_sayisi=0):
         ogrenci_not = dogru_sayisi * 5
-        return ogrenci_not
+        self.notlar.append(ogrenci_not)
+        return self.notlar
 
 class Student:
     ogrenci_adi = ""
@@ -24,16 +26,20 @@ class Class:
         print(yeniogrenci + " adlı öğrenci eklendi")
 
     def class_avg(self):
-        return 85 / len(self.ogrenciler)
+        self.ortalama=0
+        for i in range(1,len(ogr_not)):
+            self.ortalama += ogr_not[i]
+        return self.ortalama / len(self.ogrenciler)
 
 
-ogrenci1 = Student()
-sinavlar = ogrenci1.add_exam("YKS")
 ogrenci1 = Exam()
 ogr_not=ogrenci1.score(17)
-print(ogr_not)
-print(sinavlar)
+ogrenci1 = Student()
+sinav = ogrenci1.add_exam("YKS")
 ogrenci1=Class()
 ogrenci1.add_student("Alzhe01")
 ort=ogrenci1.class_avg()
+print(ogr_not)
+print(sinav)
+print(ort)
 print(ogrenci1.ogrenciler)

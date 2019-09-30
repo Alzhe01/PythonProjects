@@ -1,45 +1,25 @@
 class Exam:
-    notlar = [52,69]
-    def score(self, dogru_sayisi=0, yanlis_sayisi=0):
-        ogrenci_not = dogru_sayisi * 5
-        self.notlar.append(ogrenci_not)
-        return self.notlar
-
+    def __init__(self, dogru_sayisi,yanlis_sayisi):
+        self.dogru_sayisi=dogru_sayisi
+        self.yanlis_sayisi=yanlis_sayisi
+    def score(self):
+        return self.dogru_sayisi*100/(self.dogru_sayisi+self.yanlis_sayisi)
 class Student:
-    ogrenci_adi = ""
-    sinavlar = ["TYT" , "AYT"]
-
-    def add_exam(self, yenisinav=""):
-        self.sinavlar.append(yenisinav)
-        print(yenisinav + " adında yeni sınav eklendi")
-        return self.sinavlar
-
+    def __init__(self,ogrenci_adi):
+        self.ogrenci_adi=ogrenci_adi
+        self.sınavlar = []
+    def add_exam(self,nt):
+        self.nt = nt
+        self.sınavlar.append(self.nt.score())
     def avg_score(self):
-        return self.sinavlar / len(self.sinavlar)
-
-
+        return sum(self.sınavlar)/len(self.sınavlar)
 class Class:
-    ogrenciler = ["Deneme" , "THT"]
-
-    def add_student(self, yeniogrenci=""):
-        self.ogrenciler.append(yeniogrenci)
-        print(yeniogrenci + " adlı öğrenci eklendi")
-
+    def __init__(self):
+        self.ogrenci_liste = []
+        self.notlar =[]
+    def add_student(self,isim):
+        self.isim = isim
+        self.ogrenci_liste.append(self.isim.ogrenci_adi)
+        self.notlar.append(self.isim.avg_score())
     def class_avg(self):
-        self.ortalama=0
-        for i in range(1,len(ogr_not)):
-            self.ortalama += ogr_not[i]
-        return self.ortalama / len(self.ogrenciler)
-
-
-ogrenci1 = Exam()
-ogr_not=ogrenci1.score(17)
-ogrenci1 = Student()
-sinav = ogrenci1.add_exam("YKS")
-ogrenci1=Class()
-ogrenci1.add_student("Alzhe01")
-ort=ogrenci1.class_avg()
-print(ogr_not)
-print(sinav)
-print(ort)
-print(ogrenci1.ogrenciler)
+        return sum(self.notlar)/len(self.ogrenci_liste)
